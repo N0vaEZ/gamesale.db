@@ -1,4 +1,4 @@
-package com.example.gamesaledb
+package com.example.gamesaledb.data.model
 
 data class GamePrice(
     val store: String,

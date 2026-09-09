@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.example.gamesaledb.ui.game.GameListScreen
 import com.example.gamesaledb.ui.theme.GamesaleDBTheme
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +13,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GamesaleDBTheme {
-                GameListScreen()
+                GameListScreen(
+                )
             }
         }
     }

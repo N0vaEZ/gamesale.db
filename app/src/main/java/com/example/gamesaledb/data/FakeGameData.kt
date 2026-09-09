@@ -1,4 +1,7 @@
-package com.example.gamesaledb
+package com.example.gamesaledb.data
+
+import com.example.gamesaledb.data.model.Game
+import com.example.gamesaledb.data.model.GamePrice
 
 val fakeGames = listOf(
     Game(
