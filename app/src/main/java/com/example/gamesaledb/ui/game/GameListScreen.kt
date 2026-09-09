@@ -1,5 +1,6 @@
 package com.example.gamesaledb.ui.game
 
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,16 +13,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.gamesaledb.data.fakeGames
+import com.example.gamesaledb.data.model.Game
 
 @Composable
-fun GameListScreen() {
+fun GameListScreen(
+    onGameClick: (Game) -> Unit
+) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp)
     ) {
         items(fakeGames) { game ->
             Card(
                 onClick = {
-                    println("Clicked ${game.name}")
+                    onGameClick(game)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
