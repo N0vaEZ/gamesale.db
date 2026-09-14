@@ -15,12 +15,15 @@ import com.example.gamesaledb.ui.game.GameDetailsScreen
 import com.example.gamesaledb.ui.game.GameListScreen
 import com.example.gamesaledb.ui.wishlist.WishlistScreen
 import com.example.gamesaledb.ui.wishlist.WishlistViewModel
+import com.example.gamesaledb.ui.game.GameViewModel
 
 @Composable
 fun AppNavigation() {
-
+    val gameViewModel: GameViewModel = viewModel()
+    val apiGames by gameViewModel.games.collectAsState()
     val navController = rememberNavController()
     val wishlistViewModel: WishlistViewModel = viewModel()
+    val apiPrices by gameViewModel.prices.collectAsState()
 
     val wishlistIds by wishlistViewModel
         .wishlistIds
@@ -44,7 +47,15 @@ fun AppNavigation() {
                 GameListScreen(
                     onGameClick = { game ->
                         navController.navigate("game/${game.id}")
-                    }
+                    },
+                    apiGames = apiGames,
+                    onSearch = { title ->
+                        gameViewModel.searchGames(title)
+                    },
+                    onApiGameClick = { game ->
+                        gameViewModel.loadPrices(game.id)
+                    },
+                    apiPrices = apiPrices
                 )
             }
         }
@@ -81,4 +92,5 @@ fun AppNavigation() {
             )
         }
     }
+
 }
