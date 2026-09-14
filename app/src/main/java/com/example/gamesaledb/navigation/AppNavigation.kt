@@ -1,6 +1,12 @@
 package com.example.gamesaledb.navigation
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -8,32 +14,17 @@ import com.example.gamesaledb.data.fakeGames
 import com.example.gamesaledb.ui.game.GameDetailsScreen
 import com.example.gamesaledb.ui.game.GameListScreen
 import com.example.gamesaledb.ui.wishlist.WishlistScreen
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.runtime.rememberCoroutineScope
-import kotlinx.coroutines.launch
-import com.example.gamesaledb.data.local.GameSaleDatabase
-import com.example.gamesaledb.data.local.WishlistEntity
+import com.example.gamesaledb.ui.wishlist.WishlistViewModel
 
 @Composable
 fun AppNavigation() {
 
     val navController = rememberNavController()
-    val context = LocalContext.current
-    val database = GameSaleDatabase.getDatabase(context)
-    val wishlistDao = database.wishlistDao()
+    val wishlistViewModel: WishlistViewModel = viewModel()
 
-    val wishlistItems by wishlistDao
-        .getAll()
-        .collectAsState(initial = emptyList())
-
-    val scope = rememberCoroutineScope()
-    val wishlistIds = wishlistItems.map { it.gameId }
+    val wishlistIds by wishlistViewModel
+        .wishlistIds
+        .collectAsState()
 
     NavHost(
         navController = navController,
@@ -71,17 +62,7 @@ fun AppNavigation() {
                     game = game,
                     isWishlisted = wishlistIds.contains(game.id),
                     onWishlistClick = {
-                        scope.launch {
-                            if (wishlistIds.contains(game.id)) {
-                                wishlistDao.delete(
-                                    WishlistEntity(gameId = game.id)
-                                )
-                            } else {
-                                wishlistDao.insert(
-                                    WishlistEntity(gameId = game.id)
-                                )
-                            }
-                        }
+                        wishlistViewModel.toggleWishlist(game.id)
                     }
                 )
             }
