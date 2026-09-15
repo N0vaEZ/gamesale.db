@@ -15,6 +15,7 @@ import com.example.gamesaledb.data.local.GameSaleDatabase
 import com.example.gamesaledb.data.local.GameEntity
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
+import com.example.gamesaledb.data.local.WishlistEntity
 
 class GameViewModel(
     application: Application
@@ -81,6 +82,16 @@ class GameViewModel(
     fun selectCachedGame(game: GameEntity) {
         _selectedGame.value = GameSearchDto(
             id = game.id,
+            slug = game.slug,
+            title = game.title,
+            type = null,
+            mature = false
+        )
+    }
+
+    fun selectWishlistGame(game: WishlistEntity) {
+        _selectedGame.value = GameSearchDto(
+            id = game.gameId,
             slug = game.slug,
             title = game.title,
             type = null,

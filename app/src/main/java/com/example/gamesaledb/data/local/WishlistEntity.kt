@@ -6,5 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "wishlist")
 data class WishlistEntity(
     @PrimaryKey
-    val gameId: String
+    val gameId: String,
+    val title: String,
+    val slug: String
 )

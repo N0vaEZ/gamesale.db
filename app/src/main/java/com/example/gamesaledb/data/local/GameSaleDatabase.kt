@@ -13,7 +13,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         GameEntity::class,
         PriceEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class GameSaleDatabase : RoomDatabase() {
@@ -38,7 +38,8 @@ abstract class GameSaleDatabase : RoomDatabase() {
                 )
                     .addMigrations(
                         MIGRATION_1_2,
-                        MIGRATION_2_3
+                        MIGRATION_2_3,
+                        MIGRATION_3_4
                     )
                     .build()
 
@@ -76,6 +77,18 @@ abstract class GameSaleDatabase : RoomDatabase() {
                 PRIMARY KEY(`gameId`, `shopId`)
             )
             """.trimIndent()
+                )
+            }
+        }
+
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "ALTER TABLE wishlist ADD COLUMN title TEXT NOT NULL DEFAULT ''"
+                )
+
+                db.execSQL(
+                    "ALTER TABLE wishlist ADD COLUMN slug TEXT NOT NULL DEFAULT ''"
                 )
             }
         }

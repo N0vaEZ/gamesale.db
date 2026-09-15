@@ -11,12 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.gamesaledb.data.model.Game
+import com.example.gamesaledb.data.local.WishlistEntity
 
 @Composable
 fun WishlistScreen(
-    games: List<Game>,
-    onGameClick: (Game) -> Unit
+    games: List<WishlistEntity>,
+    onGameClick: (WishlistEntity) -> Unit
 ) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp)
@@ -33,7 +33,7 @@ fun WishlistScreen(
                 Column(
                     modifier = Modifier.padding(16.dp)
                 ) {
-                    Text(text = game.name)
+                    Text(text = game.title)
                 }
             }
         }

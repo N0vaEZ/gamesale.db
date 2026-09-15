@@ -27,10 +27,8 @@ fun AppNavigation() {
     val apiPrices by gameViewModel.prices.collectAsState()
     val cachedGames by gameViewModel.cachedGames.collectAsState()
     val selectedGame by gameViewModel.selectedGame.collectAsState()
-
-    val wishlistIds by wishlistViewModel
-        .wishlistIds
-        .collectAsState()
+    val wishlistIds by wishlistViewModel.wishlistIds.collectAsState()
+    val wishlistItems by wishlistViewModel.wishlistItems.collectAsState()
 
     NavHost(
         navController = navController,
@@ -85,21 +83,25 @@ fun AppNavigation() {
                     game = game,
                     isWishlisted = wishlistIds.contains(game.id),
                     onWishlistClick = {
-                        wishlistViewModel.toggleWishlist(game.id)
+                        wishlistViewModel.toggleWishlist(
+                            gameId = game.id,
+                            title = game.name,
+                            slug = game.name
+                                .lowercase()
+                                .replace(" ", "-")
+                        )
                     }
                 )
             }
         }
 
         composable("wishlist") {
-            val wishlistGames = fakeGames.filter { game ->
-                wishlistIds.contains(game.id)
-            }
-
             WishlistScreen(
-                games = wishlistGames,
+                games = wishlistItems,
                 onGameClick = { game ->
-                    navController.navigate("game/${game.id}")
+                    gameViewModel.selectWishlistGame(game)
+                    gameViewModel.loadPrices(game.gameId)
+                    navController.navigate("apiGameDetails")
                 }
             )
         }
@@ -111,7 +113,11 @@ fun AppNavigation() {
                     prices = apiPrices,
                     isWishlisted = wishlistIds.contains(game.id),
                     onWishlistClick = {
-                        wishlistViewModel.toggleWishlist(game.id)
+                        wishlistViewModel.toggleWishlist(
+                            gameId = game.id,
+                            title = game.title,
+                            slug = game.slug
+                        )
                     }
                 )
             }

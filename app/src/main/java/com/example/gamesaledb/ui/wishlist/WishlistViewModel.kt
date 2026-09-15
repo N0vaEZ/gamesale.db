@@ -29,17 +29,31 @@ class WishlistViewModel(
                 initialValue = emptyList()
             )
 
-    fun toggleWishlist(gameId: String) {
+    fun toggleWishlist(
+        gameId: String,
+        title: String,
+        slug: String
+    ) {
         viewModelScope.launch {
             if (wishlistIds.value.contains(gameId)) {
-                wishlistDao.delete(
-                    WishlistEntity(gameId)
-                )
+                wishlistDao.deleteById(gameId)
             } else {
                 wishlistDao.insert(
-                    WishlistEntity(gameId)
+                    WishlistEntity(
+                        gameId = gameId,
+                        title = title,
+                        slug = slug
+                    )
                 )
             }
         }
     }
+
+    val wishlistItems: StateFlow<List<WishlistEntity>> =
+        wishlistDao.getAll()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = emptyList()
+            )
 }
