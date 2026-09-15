@@ -67,4 +67,24 @@ class GameViewModel(
                 started = SharingStarted.WhileSubscribed(5_000),
                 initialValue = emptyList()
             )
+
+    private val _selectedGame =
+        MutableStateFlow<GameSearchDto?>(null)
+
+    val selectedGame: StateFlow<GameSearchDto?> =
+        _selectedGame.asStateFlow()
+
+    fun selectGame(game: GameSearchDto) {
+        _selectedGame.value = game
+    }
+
+    fun selectCachedGame(game: GameEntity) {
+        _selectedGame.value = GameSearchDto(
+            id = game.id,
+            slug = game.slug,
+            title = game.title,
+            type = null,
+            mature = false
+        )
+    }
 }

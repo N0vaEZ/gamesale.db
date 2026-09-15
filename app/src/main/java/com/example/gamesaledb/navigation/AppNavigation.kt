@@ -16,6 +16,7 @@ import com.example.gamesaledb.ui.game.GameListScreen
 import com.example.gamesaledb.ui.wishlist.WishlistScreen
 import com.example.gamesaledb.ui.wishlist.WishlistViewModel
 import com.example.gamesaledb.ui.game.GameViewModel
+import com.example.gamesaledb.ui.game.ApiGameDetailsScreen
 
 @Composable
 fun AppNavigation() {
@@ -25,6 +26,7 @@ fun AppNavigation() {
     val wishlistViewModel: WishlistViewModel = viewModel()
     val apiPrices by gameViewModel.prices.collectAsState()
     val cachedGames by gameViewModel.cachedGames.collectAsState()
+    val selectedGame by gameViewModel.selectedGame.collectAsState()
 
     val wishlistIds by wishlistViewModel
         .wishlistIds
@@ -50,16 +52,21 @@ fun AppNavigation() {
                         navController.navigate("game/${game.id}")
                     },
                     apiGames = apiGames,
-                    apiPrices = apiPrices,
                     cachedGames = cachedGames,
                     onSearch = { title ->
                         gameViewModel.searchGames(title)
                     },
                     onApiGameClick = { game ->
+                        gameViewModel.selectGame(game)
                         gameViewModel.loadPrices(game.id)
+
+                        navController.navigate("apiGameDetails")
                     },
                     onCachedGameClick = { game ->
+                        gameViewModel.selectCachedGame(game)
                         gameViewModel.loadPrices(game.id)
+
+                        navController.navigate("apiGameDetails")
                     },
                     )
             }
@@ -95,6 +102,19 @@ fun AppNavigation() {
                     navController.navigate("game/${game.id}")
                 }
             )
+        }
+
+        composable("apiGameDetails") {
+            selectedGame?.let { game ->
+                ApiGameDetailsScreen(
+                    game = game,
+                    prices = apiPrices,
+                    isWishlisted = wishlistIds.contains(game.id),
+                    onWishlistClick = {
+                        wishlistViewModel.toggleWishlist(game.id)
+                    }
+                )
+            }
         }
     }
 
