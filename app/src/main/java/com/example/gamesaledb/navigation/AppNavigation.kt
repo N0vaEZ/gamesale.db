@@ -24,6 +24,7 @@ fun AppNavigation() {
     val navController = rememberNavController()
     val wishlistViewModel: WishlistViewModel = viewModel()
     val apiPrices by gameViewModel.prices.collectAsState()
+    val cachedGames by gameViewModel.cachedGames.collectAsState()
 
     val wishlistIds by wishlistViewModel
         .wishlistIds
@@ -49,13 +50,14 @@ fun AppNavigation() {
                         navController.navigate("game/${game.id}")
                     },
                     apiGames = apiGames,
+                    apiPrices = apiPrices,
+                    cachedGames = cachedGames,
                     onSearch = { title ->
                         gameViewModel.searchGames(title)
                     },
                     onApiGameClick = { game ->
                         gameViewModel.loadPrices(game.id)
-                    },
-                    apiPrices = apiPrices
+                    }
                 )
             }
         }

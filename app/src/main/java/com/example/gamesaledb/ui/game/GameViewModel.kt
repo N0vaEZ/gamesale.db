@@ -1,6 +1,5 @@
 package com.example.gamesaledb.ui.game
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gamesaledb.data.remote.RetrofitClient
 import com.example.gamesaledb.data.remote.dto.GameSearchDto
@@ -10,11 +9,22 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import com.example.gamesaledb.data.remote.dto.GameDealDto
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.example.gamesaledb.data.local.GameSaleDatabase
+import com.example.gamesaledb.data.local.GameEntity
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 
-class GameViewModel : ViewModel() {
+class GameViewModel(
+    application: Application
+) : AndroidViewModel(application) {
 
     private val repository = GameRepository(
-        api = RetrofitClient.api
+        api = RetrofitClient.api,
+        gameDao = GameSaleDatabase
+            .getDatabase(application)
+            .gameDao()
     )
 
     private val _games =
@@ -66,4 +76,12 @@ class GameViewModel : ViewModel() {
 
     val prices: StateFlow<List<GameDealDto>> =
         _prices.asStateFlow()
+
+    val cachedGames: StateFlow<List<GameEntity>> =
+        repository.getCachedGames()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = emptyList()
+            )
 }

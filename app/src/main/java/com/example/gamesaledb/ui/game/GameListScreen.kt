@@ -23,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.gamesaledb.data.remote.dto.GameSearchDto
 import com.example.gamesaledb.data.remote.dto.GameDealDto
+import com.example.gamesaledb.data.local.GameEntity
 
 @Composable
 fun GameListScreen(
@@ -30,7 +31,8 @@ fun GameListScreen(
     apiGames: List<GameSearchDto>,
     onSearch: (String) -> Unit,
     onApiGameClick: (GameSearchDto) -> Unit,
-    apiPrices: List<GameDealDto>
+    apiPrices: List<GameDealDto>,
+    cachedGames: List<GameEntity>
 ) {
     var searchText by remember {
         mutableStateOf("")
@@ -83,6 +85,19 @@ fun GameListScreen(
                 text = "${deal.shop.name}: ${deal.price.currency} ${deal.price.amount}",
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
+        }
+        if (cachedGames.isNotEmpty()) {
+            Text(
+                text = "Cached games",
+                modifier = Modifier.padding(16.dp)
+            )
+
+            cachedGames.forEach { game ->
+                Text(
+                    text = game.title,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
+            }
         }
     }
     LazyColumn(
