@@ -10,9 +10,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 @Database(
     entities = [
         WishlistEntity::class,
-        GameEntity::class
+        GameEntity::class,
+        PriceEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class GameSaleDatabase : RoomDatabase() {
@@ -20,6 +21,8 @@ abstract class GameSaleDatabase : RoomDatabase() {
     abstract fun wishlistDao(): WishlistDao
 
     abstract fun gameDao(): GameDao
+
+    abstract fun priceDao(): PriceDao
 
     companion object {
         @Volatile
@@ -33,7 +36,10 @@ abstract class GameSaleDatabase : RoomDatabase() {
                     GameSaleDatabase::class.java,
                     "gamesale_database"
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(
+                        MIGRATION_1_2,
+                        MIGRATION_2_3
+                    )
                     .build()
 
                 INSTANCE = instance
@@ -51,6 +57,23 @@ abstract class GameSaleDatabase : RoomDatabase() {
                 `title` TEXT NOT NULL,
                 `slug` TEXT NOT NULL,
                 PRIMARY KEY(`id`)
+            )
+            """.trimIndent()
+                )
+            }
+        }
+
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    """
+            CREATE TABLE IF NOT EXISTS `prices` (
+                `gameId` TEXT NOT NULL,
+                `shopId` INTEGER NOT NULL,
+                `shopName` TEXT NOT NULL,
+                `amount` REAL NOT NULL,
+                `currency` TEXT NOT NULL,
+                PRIMARY KEY(`gameId`, `shopId`)
             )
             """.trimIndent()
                 )

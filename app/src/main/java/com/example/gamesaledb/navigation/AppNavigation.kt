@@ -57,8 +57,11 @@ fun AppNavigation() {
                     },
                     onApiGameClick = { game ->
                         gameViewModel.loadPrices(game.id)
-                    }
-                )
+                    },
+                    onCachedGameClick = { game ->
+                        gameViewModel.loadPrices(game.id)
+                    },
+                    )
             }
         }
 

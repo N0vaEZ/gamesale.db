@@ -17,4 +17,10 @@ interface GameDao {
 
     @Query("DELETE FROM games")
     suspend fun deleteAllGames()
+
+    @Query("""
+    SELECT * FROM games
+    WHERE title LIKE '%' || :title || '%'
+""")
+    suspend fun searchCachedGames(title: String): List<GameEntity>
 }

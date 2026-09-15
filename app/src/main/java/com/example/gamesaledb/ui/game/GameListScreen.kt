@@ -32,77 +32,102 @@ fun GameListScreen(
     onSearch: (String) -> Unit,
     onApiGameClick: (GameSearchDto) -> Unit,
     apiPrices: List<GameDealDto>,
-    cachedGames: List<GameEntity>
+    cachedGames: List<GameEntity>,
+    onCachedGameClick: (GameEntity) -> Unit
 ) {
     var searchText by remember {
         mutableStateOf("")
     }
 
-    Column {
-        Row(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            OutlinedTextField(
-                value = searchText,
-                onValueChange = {
-                    searchText = it
-                },
-                label = {
-                    Text("Search games")
-                }
-            )
-
-            Button(
-                onClick = {
-                    onSearch(searchText)
-                }
-            ) {
-                Text("Search")
-            }
-        }
-
-        apiGames.forEach { game ->
-            Card(
-                onClick = {
-                    onApiGameClick(game)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        start = 16.dp,
-                        end = 16.dp,
-                        bottom = 8.dp
-                    )
-            ) {
-                Text(
-                    text = game.title,
-                    modifier = Modifier.padding(16.dp)
-                )
-            }
-        }
-        apiPrices.forEach { deal ->
-            Text(
-                text = "${deal.shop.name}: ${deal.price.currency} ${deal.price.amount}",
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
-        }
-        if (cachedGames.isNotEmpty()) {
-            Text(
-                text = "Cached games",
-                modifier = Modifier.padding(16.dp)
-            )
-
-            cachedGames.forEach { game ->
-                Text(
-                    text = game.title,
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                )
-            }
-        }
+    var showSearchResults by remember {
+        mutableStateOf(false)
     }
     LazyColumn(
         contentPadding = PaddingValues(16.dp)
     ) {
+        item {
+            Row {
+                OutlinedTextField(
+                    value = searchText,
+                    onValueChange = {
+                        searchText = it
+                    },
+                    label = {
+                        Text("Search games")
+                    }
+                )
+
+                Button(
+                    onClick = {
+                        onSearch(searchText)
+                        showSearchResults = true
+                    }
+                ) {
+                    Text("Search")
+                }
+            }
+        }
+
+        if (showSearchResults) {
+
+            items(apiGames) { game ->
+                Card(
+                    onClick = {
+                        showSearchResults = false
+                        onApiGameClick(game)
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp)
+                ) {
+                    Text(
+                        text = game.title,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
+            }
+        }
+
+        if (apiPrices.isNotEmpty()) {
+            item {
+                Text(
+                    text = "Prices",
+                    modifier = Modifier.padding(vertical = 8.dp)
+                )
+            }
+
+            items(apiPrices) { deal ->
+                Text(
+                    text = "${deal.shop.name}: ${deal.price.currency} ${deal.price.amount}",
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
+        }
+
+        if (cachedGames.isNotEmpty()) {
+            item {
+                Text(
+                    text = "Cached games",
+                    modifier = Modifier.padding(vertical = 8.dp)
+                )
+            }
+
+            items(cachedGames) { game ->
+                Card(
+                    onClick = {
+                        onCachedGameClick(game)
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp)
+                ) {
+                    Text(
+                        text = game.title,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
+            }
+        }
         items(fakeGames) { game ->
             Card(
                 onClick = {

@@ -20,11 +20,13 @@ class GameViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
+    private val database =
+        GameSaleDatabase.getDatabase(application)
+
     private val repository = GameRepository(
         api = RetrofitClient.api,
-        gameDao = GameSaleDatabase
-            .getDatabase(application)
-            .gameDao()
+        gameDao = database.gameDao(),
+        priceDao = database.priceDao()
     )
 
     private val _games =
@@ -46,27 +48,8 @@ class GameViewModel(
     fun loadPrices(gameId: String) {
         viewModelScope.launch {
             try {
-                val result = repository.getPrices(gameId)
-
-                println("PRICE RESULT SIZE: ${result.size}")
-
-                result.forEach { gamePrices ->
-                    println("GAME ID: ${gamePrices.id}")
-                    println("DEALS COUNT: ${gamePrices.deals.size}")
-
-                    gamePrices.deals.forEach { deal ->
-                        println(
-                            "${deal.shop.name}: " +
-                                    "${deal.price.currency} ${deal.price.amount}"
-                        )
-                    }
-                }
-
-                _prices.value =
-                    result.firstOrNull()?.deals ?: emptyList()
-
+                _prices.value = repository.getPrices(gameId)
             } catch (e: Exception) {
-                println("PRICE REQUEST FAILED")
                 e.printStackTrace()
             }
         }
