@@ -10,8 +10,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.gamesaledb.data.fakeGames
-import com.example.gamesaledb.ui.game.GameDetailsScreen
 import com.example.gamesaledb.ui.game.GameListScreen
 import com.example.gamesaledb.ui.wishlist.WishlistScreen
 import com.example.gamesaledb.ui.wishlist.WishlistViewModel
@@ -46,9 +44,6 @@ fun AppNavigation() {
                 }
 
                 GameListScreen(
-                    onGameClick = { game ->
-                        navController.navigate("game/${game.id}")
-                    },
                     apiGames = apiGames,
                     cachedGames = cachedGames,
                     onSearch = { title ->
@@ -67,31 +62,6 @@ fun AppNavigation() {
                         navController.navigate("apiGameDetails")
                     },
                     )
-            }
-        }
-
-        composable("game/{gameId}") { backStackEntry ->
-
-            val gameId = backStackEntry.arguments?.getString("gameId")
-
-            val game = fakeGames.find {
-                it.id == gameId
-            }
-
-            if (game != null) {
-                GameDetailsScreen(
-                    game = game,
-                    isWishlisted = wishlistIds.contains(game.id),
-                    onWishlistClick = {
-                        wishlistViewModel.toggleWishlist(
-                            gameId = game.id,
-                            title = game.name,
-                            slug = game.name
-                                .lowercase()
-                                .replace(" ", "-")
-                        )
-                    }
-                )
             }
         }
 

@@ -1,7 +1,5 @@
 package com.example.gamesaledb.ui.game
 
-
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,14 +17,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.gamesaledb.data.fakeGames
 import com.example.gamesaledb.data.local.GameEntity
-import com.example.gamesaledb.data.model.Game
 import com.example.gamesaledb.data.remote.dto.GameSearchDto
 
 @Composable
 fun GameListScreen(
-    onGameClick: (Game) -> Unit,
     apiGames: List<GameSearchDto>,
     onSearch: (String) -> Unit,
     onApiGameClick: (GameSearchDto) -> Unit,
@@ -107,28 +102,6 @@ fun GameListScreen(
                         text = game.title,
                         modifier = Modifier.padding(16.dp)
                     )
-                }
-            }
-        }
-        items(fakeGames) { game ->
-            Card(
-                onClick = {
-                    onGameClick(game)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 12.dp)
-            ) {
-                Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Text(text = game.name)
-
-                    game.prices.forEach { price ->
-                        Text(
-                            text = "${price.store}: R$ ${price.price}"
-                        )
-                    }
                 }
             }
         }
