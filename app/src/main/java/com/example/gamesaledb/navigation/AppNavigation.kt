@@ -24,7 +24,7 @@ fun AppNavigation() {
     val apiGames by gameViewModel.games.collectAsState()
     val navController = rememberNavController()
     val wishlistViewModel: WishlistViewModel = viewModel()
-    val apiPrices by gameViewModel.prices.collectAsState()
+    val priceUiState by gameViewModel.priceUiState.collectAsState()
     val cachedGames by gameViewModel.cachedGames.collectAsState()
     val selectedGame by gameViewModel.selectedGame.collectAsState()
     val wishlistIds by wishlistViewModel.wishlistIds.collectAsState()
@@ -110,7 +110,9 @@ fun AppNavigation() {
             selectedGame?.let { game ->
                 ApiGameDetailsScreen(
                     game = game,
-                    prices = apiPrices,
+                    prices = priceUiState.prices,
+                    isLoading = priceUiState.isLoading,
+                    message = priceUiState.message,
                     isWishlisted = wishlistIds.contains(game.id),
                     onWishlistClick = {
                         wishlistViewModel.toggleWishlist(

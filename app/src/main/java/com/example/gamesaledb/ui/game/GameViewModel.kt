@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import com.example.gamesaledb.data.remote.dto.GameDealDto
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.gamesaledb.data.local.GameSaleDatabase
@@ -48,18 +47,41 @@ class GameViewModel(
 
     fun loadPrices(gameId: String) {
         viewModelScope.launch {
+
+            _priceUiState.value = GamePriceUiState(
+                isLoading = true
+            )
+
             try {
-                _prices.value = repository.getPrices(gameId)
-            } catch (e: Exception) {
-                e.printStackTrace()
+                val result = repository.getPrices(gameId)
+
+                _priceUiState.value = GamePriceUiState(
+                    prices = result.prices,
+                    isLoading = false,
+                    message = if (result.fromCache) {
+                        if (result.prices.isEmpty()) {
+                            "Unable to load prices."
+                        } else {
+                            "No internet. Showing saved prices."
+                        }
+                    } else {
+                        "Prices updated successfully."
+                    }
+                )
+
+            } catch (_: Exception) {
+                _priceUiState.value = GamePriceUiState(
+                    isLoading = false,
+                    message = "Unable to load prices."
+                )
             }
         }
     }
-    private val _prices =
-        MutableStateFlow<List<GameDealDto>>(emptyList())
+    private val _priceUiState =
+        MutableStateFlow(GamePriceUiState())
 
-    val prices: StateFlow<List<GameDealDto>> =
-        _prices.asStateFlow()
+    val priceUiState: StateFlow<GamePriceUiState> =
+        _priceUiState.asStateFlow()
 
     val cachedGames: StateFlow<List<GameEntity>> =
         repository.getCachedGames()

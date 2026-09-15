@@ -48,7 +48,7 @@ class GameRepository(
         }
     }
 
-    suspend fun getPrices(gameId: String): List<GameDealDto> {
+    suspend fun getPrices(gameId: String): PriceResult {
         return try {
             val result = api.getPrices(
                 gameIds = listOf(gameId)
@@ -69,14 +69,17 @@ class GameRepository(
             priceDao.deletePricesForGame(gameId)
             priceDao.insertPrices(priceEntities)
 
-            deals
+            PriceResult(
+                prices = deals,
+                fromCache = false
+            )
 
         } catch (_: Exception) {
 
             val cachedPrices =
                 priceDao.getPricesForGame(gameId)
 
-            cachedPrices.map { cached ->
+            val deals = cachedPrices.map { cached ->
                 GameDealDto(
                     shop = ShopDto(
                         id = cached.shopId,
@@ -91,6 +94,11 @@ class GameRepository(
                     url = ""
                 )
             }
+
+            PriceResult(
+                prices = deals,
+                fromCache = true
+            )
         }
     }
 

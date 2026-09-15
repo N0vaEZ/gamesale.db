@@ -15,11 +15,15 @@ import androidx.compose.ui.unit.dp
 import com.example.gamesaledb.data.remote.dto.GameDealDto
 import com.example.gamesaledb.data.remote.dto.GameSearchDto
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.foundation.layout.Row
 
 @Composable
 fun ApiGameDetailsScreen(
     game: GameSearchDto,
     prices: List<GameDealDto>,
+    isLoading: Boolean,
+    message: String?,
     isWishlisted: Boolean,
     onWishlistClick: () -> Unit
 ) {
@@ -46,6 +50,38 @@ fun ApiGameDetailsScreen(
                         "Add to Wishlist"
                     }
                 )
+            }
+        }
+
+        if (isLoading) {
+            item {
+                Row(
+                    modifier = Modifier.padding(bottom = 16.dp)
+                ) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.padding(end = 12.dp)
+                    )
+
+                    Text(
+                        text = "Synchronizing prices...",
+                        modifier = Modifier.padding(top = 12.dp)
+                    )
+                }
+            }
+        }
+
+        if (message != null) {
+            item {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp)
+                ) {
+                    Text(
+                        text = message,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
             }
         }
 
