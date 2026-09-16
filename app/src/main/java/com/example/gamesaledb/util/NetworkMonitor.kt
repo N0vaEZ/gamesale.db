@@ -14,7 +14,8 @@ class NetworkMonitor(context: Context) {
         context.getSystemService(Context.CONNECTIVITY_SERVICE)
                 as ConnectivityManager
 
-    private val _isOnline = MutableStateFlow(checkInternetConnection())
+    private val _isOnline =
+        MutableStateFlow(checkInternetConnection())
 
     val isOnline: StateFlow<Boolean> =
         _isOnline.asStateFlow()
@@ -27,14 +28,20 @@ class NetworkMonitor(context: Context) {
             }
 
             override fun onLost(network: Network) {
-                updateConnectionStatus()
+                _isOnline.value = false
             }
 
             override fun onCapabilitiesChanged(
                 network: Network,
                 networkCapabilities: NetworkCapabilities
             ) {
-                updateConnectionStatus()
+                _isOnline.value =
+                    networkCapabilities.hasCapability(
+                        NetworkCapabilities.NET_CAPABILITY_INTERNET
+                    ) &&
+                            networkCapabilities.hasCapability(
+                                NetworkCapabilities.NET_CAPABILITY_VALIDATED
+                            )
             }
         }
 

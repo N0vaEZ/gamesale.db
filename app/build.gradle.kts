@@ -85,4 +85,5 @@ dependencies {
     implementation(libs.retrofit.converter.gson)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
+    implementation(libs.androidx.material.icons.extended)
 }
