@@ -17,6 +17,12 @@ import com.example.gamesaledb.data.remote.dto.GameSearchDto
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.foundation.layout.Row
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 
 @Composable
 fun ApiGameDetailsScreen(
@@ -25,8 +31,22 @@ fun ApiGameDetailsScreen(
     isLoading: Boolean,
     message: String?,
     isWishlisted: Boolean,
-    onWishlistClick: () -> Unit
+    onWishlistClick: () -> Unit,
+    savedNote: String,
+    onSaveNote: (String) -> Unit
 ) {
+    var noteText by remember(game.id) {
+        mutableStateOf(savedNote)
+    }
+
+    var noteSaved by remember(game.id) {
+        mutableStateOf(false)
+    }
+
+    LaunchedEffect(savedNote) {
+        noteText = savedNote
+    }
+
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp)
@@ -49,6 +69,44 @@ fun ApiGameDetailsScreen(
                     } else {
                         "Add to Wishlist"
                     }
+                )
+            }
+        }
+
+        item {
+            Text(
+                text = "Your Note",
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+
+            OutlinedTextField(
+                value = noteText,
+                onValueChange = {
+                    noteText = it
+                    noteSaved = false
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 8.dp),
+                label = {
+                    Text("Personal note")
+                }
+            )
+
+            Button(
+                onClick = {
+                    onSaveNote(noteText)
+                    noteSaved = true
+                },
+                modifier = Modifier.padding(bottom = 8.dp)
+            ) {
+                Text("Save Note")
+            }
+
+            if (noteSaved) {
+                Text(
+                    text = "✓ Note saved successfully",
+                    modifier = Modifier.padding(bottom = 16.dp)
                 )
             }
         }

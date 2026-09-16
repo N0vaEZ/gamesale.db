@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import com.example.gamesaledb.util.NetworkMonitor
 import androidx.compose.runtime.LaunchedEffect
+import com.example.gamesaledb.ui.game.GameNoteViewModel
 
 @Composable
 fun AppNavigation() {
@@ -38,6 +39,8 @@ fun AppNavigation() {
     val selectedGame by gameViewModel.selectedGame.collectAsState()
     val wishlistIds by wishlistViewModel.wishlistIds.collectAsState()
     val wishlistItems by wishlistViewModel.wishlistItems.collectAsState()
+    val gameNoteViewModel: GameNoteViewModel = viewModel()
+    val gameNote by gameNoteViewModel.note.collectAsState()
 
     LaunchedEffect(isOnline) {
         if (isOnline) {
@@ -100,18 +103,32 @@ fun AppNavigation() {
 
         composable("apiGameDetails") {
             selectedGame?.let { game ->
+                LaunchedEffect(game.id) {
+                    gameNoteViewModel.selectGame(game.id)
+                }
+
                 ApiGameDetailsScreen(
                     game = game,
                     prices = priceUiState.prices,
                     isLoading = priceUiState.isLoading,
                     message = priceUiState.message,
                     isWishlisted = wishlistIds.contains(game.id),
+
                     onWishlistClick = {
                         wishlistViewModel.toggleWishlist(
                             gameId = game.id,
                             title = game.title,
                             slug = game.slug,
                             isOnline = isOnline
+                        )
+                    },
+
+                    savedNote = gameNote?.note ?: "",
+
+                    onSaveNote = { note ->
+                        gameNoteViewModel.saveNote(
+                            gameId = game.id,
+                            note = note
                         )
                     }
                 )

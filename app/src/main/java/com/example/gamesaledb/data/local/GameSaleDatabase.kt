@@ -11,9 +11,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
     entities = [
         WishlistEntity::class,
         GameEntity::class,
-        PriceEntity::class
+        PriceEntity::class,
+        GameNoteEntity::class
     ],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 abstract class GameSaleDatabase : RoomDatabase() {
@@ -23,6 +24,8 @@ abstract class GameSaleDatabase : RoomDatabase() {
     abstract fun gameDao(): GameDao
 
     abstract fun priceDao(): PriceDao
+
+    abstract fun gameNoteDao(): GameNoteDao
 
     companion object {
         @Volatile
@@ -42,6 +45,7 @@ abstract class GameSaleDatabase : RoomDatabase() {
                         MIGRATION_3_4,
                         MIGRATION_4_5,
                         MIGRATION_5_6,
+                        MIGRATION_6_7
                     )
                     .build()
 
@@ -107,6 +111,20 @@ abstract class GameSaleDatabase : RoomDatabase() {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL(
                     "ALTER TABLE wishlist ADD COLUMN syncOperation TEXT NOT NULL DEFAULT 'ADD'"
+                )
+            }
+        }
+
+        private val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    """
+            CREATE TABLE IF NOT EXISTS `game_notes` (
+                `gameId` TEXT NOT NULL,
+                `note` TEXT NOT NULL,
+                PRIMARY KEY(`gameId`)
+            )
+            """.trimIndent()
                 )
             }
         }
