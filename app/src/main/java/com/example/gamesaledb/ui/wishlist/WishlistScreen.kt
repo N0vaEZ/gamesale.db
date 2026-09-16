@@ -34,6 +34,15 @@ fun WishlistScreen(
                     modifier = Modifier.padding(16.dp)
                 ) {
                     Text(text = game.title)
+
+                    Text(
+                        text = when (game.syncStatus) {
+                            "PENDING" -> "⏳ Pending synchronization"
+                            "SYNCING" -> "🔄 Synchronizing..."
+                            "SYNCED" -> "✓ Synchronized"
+                            else -> game.syncStatus
+                        }
+                    )
                 }
             }
         }

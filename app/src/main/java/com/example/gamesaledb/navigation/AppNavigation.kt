@@ -15,9 +15,20 @@ import com.example.gamesaledb.ui.wishlist.WishlistScreen
 import com.example.gamesaledb.ui.wishlist.WishlistViewModel
 import com.example.gamesaledb.ui.game.GameViewModel
 import com.example.gamesaledb.ui.game.ApiGameDetailsScreen
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import com.example.gamesaledb.util.NetworkMonitor
+import androidx.compose.runtime.LaunchedEffect
 
 @Composable
 fun AppNavigation() {
+    val context = LocalContext.current
+
+    val networkMonitor = remember {
+        NetworkMonitor(context.applicationContext)
+    }
+
+    val isOnline by networkMonitor.isOnline.collectAsState()
     val gameViewModel: GameViewModel = viewModel()
     val apiGames by gameViewModel.games.collectAsState()
     val navController = rememberNavController()
@@ -27,6 +38,13 @@ fun AppNavigation() {
     val selectedGame by gameViewModel.selectedGame.collectAsState()
     val wishlistIds by wishlistViewModel.wishlistIds.collectAsState()
     val wishlistItems by wishlistViewModel.wishlistItems.collectAsState()
+
+    LaunchedEffect(isOnline) {
+        if (isOnline) {
+            wishlistViewModel.syncPendingWishlist()
+        }
+    }
+
 
     NavHost(
         navController = navController,
@@ -46,22 +64,26 @@ fun AppNavigation() {
                 GameListScreen(
                     apiGames = apiGames,
                     cachedGames = cachedGames,
+                    isOnline = isOnline,
+
                     onSearch = { title ->
                         gameViewModel.searchGames(title)
                     },
+
                     onApiGameClick = { game ->
                         gameViewModel.selectGame(game)
                         gameViewModel.loadPrices(game.id)
 
                         navController.navigate("apiGameDetails")
                     },
+
                     onCachedGameClick = { game ->
                         gameViewModel.selectCachedGame(game)
                         gameViewModel.loadPrices(game.id)
 
                         navController.navigate("apiGameDetails")
-                    },
-                    )
+                    }
+                )
             }
         }
 
@@ -88,7 +110,8 @@ fun AppNavigation() {
                         wishlistViewModel.toggleWishlist(
                             gameId = game.id,
                             title = game.title,
-                            slug = game.slug
+                            slug = game.slug,
+                            isOnline = isOnline
                         )
                     }
                 )

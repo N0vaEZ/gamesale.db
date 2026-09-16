@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "987367070228",
+    "project_id": "gamesaledb",
+    "storage_bucket": "gamesaledb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987367070228:android:b593b0dfa267682a806501",
+        "android_client_info": {
+          "package_name": "com.example.gamesaledb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYSXgQHzUIYf4ZtTXidT-frJOqIkUTqCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

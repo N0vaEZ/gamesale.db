@@ -8,5 +8,7 @@ data class WishlistEntity(
     @PrimaryKey
     val gameId: String,
     val title: String,
-    val slug: String
+    val slug: String,
+    val syncStatus: String = SyncStatus.SYNCED.name,
+    val syncOperation: String = SyncOperation.ADD.name
 )

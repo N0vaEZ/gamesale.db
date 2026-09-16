@@ -13,7 +13,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         GameEntity::class,
         PriceEntity::class
     ],
-    version = 4,
+    version = 6,
     exportSchema = false
 )
 abstract class GameSaleDatabase : RoomDatabase() {
@@ -39,7 +39,9 @@ abstract class GameSaleDatabase : RoomDatabase() {
                     .addMigrations(
                         MIGRATION_1_2,
                         MIGRATION_2_3,
-                        MIGRATION_3_4
+                        MIGRATION_3_4,
+                        MIGRATION_4_5,
+                        MIGRATION_5_6,
                     )
                     .build()
 
@@ -89,6 +91,22 @@ abstract class GameSaleDatabase : RoomDatabase() {
 
                 db.execSQL(
                     "ALTER TABLE wishlist ADD COLUMN slug TEXT NOT NULL DEFAULT ''"
+                )
+            }
+        }
+
+        private val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "ALTER TABLE wishlist ADD COLUMN syncStatus TEXT NOT NULL DEFAULT 'SYNCED'"
+                )
+            }
+        }
+
+        private val MIGRATION_5_6 = object : Migration(5, 6) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "ALTER TABLE wishlist ADD COLUMN syncOperation TEXT NOT NULL DEFAULT 'ADD'"
                 )
             }
         }

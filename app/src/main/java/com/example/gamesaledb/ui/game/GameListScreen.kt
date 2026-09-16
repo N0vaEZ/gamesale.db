@@ -26,8 +26,18 @@ fun GameListScreen(
     onSearch: (String) -> Unit,
     onApiGameClick: (GameSearchDto) -> Unit,
     cachedGames: List<GameEntity>,
-    onCachedGameClick: (GameEntity) -> Unit
+    onCachedGameClick: (GameEntity) -> Unit,
+    isOnline: Boolean,
 ) {
+    Text(
+        text = if (isOnline) {
+            "🟢 Online"
+        } else {
+            "🔴 Offline"
+        },
+        modifier = Modifier.padding(16.dp)
+    )
+
     var searchText by remember {
         mutableStateOf("")
     }
