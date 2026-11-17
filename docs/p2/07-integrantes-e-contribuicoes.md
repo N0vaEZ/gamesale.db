@@ -1,8 +1,8 @@
 # Integrantes e contribuições
 
-| Integrante | Matrícula |
-| Victor Novaes Machado | 202312567 |
-| Robson Cruz de Mello Junior | 202323260 |
+Integrante | Matrícula
+Victor Novaes Machado | 202312567
+Robson Cruz de Mello Junior | 202323260
 
 Repositório: https://github.com/N0vaEZ/gamesale.db
 
