@@ -26,6 +26,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import android.net.Uri
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.example.gamesaledb.reminders.ReminderStore
@@ -149,7 +152,7 @@ fun AppNavigation(
             }
         }
 
-        composable("wishlist") {
+        composable("wishlist") { entry ->
 
             Scaffold(
                 topBar = {
@@ -165,7 +168,7 @@ fun AppNavigation(
                         navigationIcon = {
                             IconButton(
                                 onClick = {
-                                    navController.popBackStack()
+                                    navController.popBackStackSafely(entry)
                                 }
                             ) {
                                 Icon(
@@ -197,10 +200,10 @@ fun AppNavigation(
             }
         }
 
-        composable("reminders") {
+        composable("reminders") { entry ->
             RemindersScreen(
                 game = null, state = reminderState, viewModel = reminderViewModel,
-                onBack = { navController.popBackStack() },
+                onBack = { navController.popBackStackSafely(entry) },
                 onWishlist = { navController.navigate("wishlist") { launchSingleTop = true } }
             )
         }
@@ -209,12 +212,12 @@ fun AppNavigation(
             val game = wishlistItems.firstOrNull { it.gameId == entry.arguments?.getString("gameId") }
             RemindersScreen(
                 game = game, state = reminderState, viewModel = reminderViewModel,
-                onBack = { navController.popBackStack() },
+                onBack = { navController.popBackStackSafely(entry) },
                 onWishlist = { navController.navigate("wishlist") { launchSingleTop = true } }
             )
         }
 
-        composable("apiGameDetails") {
+        composable("apiGameDetails") { entry ->
             selectedGame?.let { game ->
 
                 LaunchedEffect(game.id) {
@@ -230,7 +233,7 @@ fun AppNavigation(
                             navigationIcon = {
                                 IconButton(
                                     onClick = {
-                                        navController.popBackStack()
+                                        navController.popBackStackSafely(entry)
                                     }
                                 ) {
                                     Icon(
@@ -279,4 +282,13 @@ fun AppNavigation(
         }
     }
 
+}
+// Ignore callbacks from a destination that is leaving the screen and preserve the root.
+private fun NavHostController.popBackStackSafely(entry: NavBackStackEntry) {
+    if (currentBackStackEntry == entry &&
+        entry.lifecycle.currentState == Lifecycle.State.RESUMED &&
+        previousBackStackEntry != null
+    ) {
+        popBackStack()
+    }
 }
