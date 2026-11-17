@@ -352,6 +352,6 @@ Nove casos manuais concluídos (incluindo CT04), além do reteste CT20; cinco m�
 
 Repositório: https://github.com/N0vaEZ/gamesale.db — branch `feat/p2-doc`.
 
-[Contribuições informadas](docs/p2/07-integrantes-e-contribuicoes.md). Victor informou ter realizado as atividades orientadas nas conversas da P1 e P2; contribuição de Robson não informada.
+[Contribuições informadas](docs/p2/07-integrantes-e-contribuicoes.md).
 
 CT04 concluído em EX36: lembrete #18 (Stardew Valley), previsto para 13:15, observado como Cancelado às 13:09. Estado preservado após reabrir e ausência de notificação até pelo menos 13:20 confirmados pelo executor; captura final às 13:21. [Registro e limites das evidências](docs/evidencias/resultados-finais-17-11.md).
