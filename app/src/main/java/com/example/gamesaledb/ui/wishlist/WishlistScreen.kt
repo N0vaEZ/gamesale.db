@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -29,7 +30,8 @@ import com.example.gamesaledb.data.local.WishlistEntity
 @Composable
 fun WishlistScreen(
     games: List<WishlistEntity>,
-    onGameClick: (WishlistEntity) -> Unit
+    onGameClick: (WishlistEntity) -> Unit,
+    onReminderClick: (WishlistEntity) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier
@@ -115,6 +117,9 @@ fun WishlistScreen(
                         syncStatus = game.syncStatus,
                         modifier = Modifier.padding(top = 12.dp)
                     )
+                    OutlinedButton(onClick = { onReminderClick(game) }) {
+                        Text("Criar lembrete")
+                    }
                 }
             }
         }

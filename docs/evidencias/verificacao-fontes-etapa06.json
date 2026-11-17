@@ -1,0 +1,23 @@
+{
+  "scope": "Somente fontes e configuração. Não comprova compilação nem comportamento Android.",
+  "version": "P2-95004ee08769",
+  "source_sha256": "95004ee08769969a988ac0de4b00bf2ea9cff72e7dd1d0249fc26cdaf484f326",
+  "checks": [
+    {
+      "check": "XMLs do aplicativo bem formados",
+      "status": "PASS"
+    },
+    {
+      "check": "Manifest: permissão e receiver privado; sem alarme exato/boot",
+      "status": "PASS"
+    },
+    {
+      "check": "Preservação byte a byte de dados, migrações, telas de jogos e dependências P1",
+      "status": "PASS"
+    },
+    {
+      "check": "Wrapper Linux: LF e sintaxe Bash",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+Verificação realizada em 16/11/2026 (America/Sao_Paulo).
+7 abas preservadas, na ordem original.
+Conteúdo fora das células autorizadas: preservado.
+Listas de validação e quantidade de regras condicionais: preservadas.
+19 IDs de casos únicos, CT01 a CT19.
+16 casos manuais marcados Não executado, sem evidência fictícia.
+EX01/EX02 bloqueadas, EX03 reprovada e EX04 aprovada apenas no wrapper.
+Planilha exportada, reaberta e comparada com o modelo.
+Pré-visualizações de todas as abas alteradas examinadas, sem corte relevante de conteúdo.
+Sem verificação de uso interativo no Microsoft Excel.
+
+Atualização em 17/11/2026:
+Sete abas, 19 casos e listas de validação preservados.
+Conteúdo fora das células atualizadas comparado e preservado.
+Histórico EX01-EX04 preservado sem sobrescrita.
+Novos resultados EX05-EX08: falha/reteste de compilação e JUnit no Windows, com capturas reais.
+EX09 registra entrega por relato; EX10/EX11 registram cobertura parcial e pendências sem inventar variantes.
+Pré-visualizações das quatro abas alteradas revisadas.
+Sem validação interativa no Microsoft Excel.
+
+
+Atualização manual de 17/11/2026 após commit 108fee9:
+- Planilha editada com artifact-tool e prévias visuais conferidas.
+- Sete abas, validações e formatação condicional preservadas.
+- EX01-EX11 preservados; EX12-EX26 adicionados (26 IDs únicos).
+- CT20 e DF03 acrescentados para o defeito de retorno rápido.
+- Capturas copiadas sem alteração; recebimento/gestos/regressão identificados como relatos.
+- Verificação estática P2-0a9be0739877 passou; não comprova testes Android.
+
+
+Consolidação posterior ao commit 674e34f, em 17/11/2026:
+- EX27-EX35 inseridos em linhas disponíveis, sem substituir EX01-EX26.
+- 35 IDs únicos; sete abas, validações e formatação condicional preservadas.
+- CT21 documenta execução/revisão do lint. Nenhum achado ocultado.
+- CT01/CT03/CT05/CT06/CT08/CT10/CT12/CT14 concluídos por evidência e/ou relato.
+- Wi-Fi ligado em modo avião identificado; CT08 repetido com Wi-Fi desligado.
+- APK recebido: integridade ZIP e SHA-256 conferidos; instalação/abertura por relato.
+- Avaliação externa adiada, não executada. Sem teste Android pelo assistente.
+
+Etapa 10: integrantes/repositório informados; EX36/CT04 aprovado por capturas e relato. Histórico EX01–EX35 preservado; 21 casos planejados e 36 execuções registradas.
