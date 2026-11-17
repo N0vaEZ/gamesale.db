@@ -1,7 +1,6 @@
 # Integrantes e contribuições
 
 | Integrante | Matrícula |
-
 | Victor Novaes Machado | 202312567 |
 | Robson Cruz de Mello Junior | 202323260 |
 
