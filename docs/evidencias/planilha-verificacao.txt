@@ -26,3 +26,13 @@ Atualização manual de 17/11/2026 após commit 108fee9:
 - CT20 e DF03 acrescentados para o defeito de retorno rápido.
 - Capturas copiadas sem alteração; recebimento/gestos/regressão identificados como relatos.
 - Verificação estática P2-0a9be0739877 passou; não comprova testes Android.
+
+
+Consolidação posterior ao commit 674e34f, em 17/11/2026:
+- EX27-EX35 inseridos em linhas disponíveis, sem substituir EX01-EX26.
+- 35 IDs únicos; sete abas, validações e formatação condicional preservadas.
+- CT21 documenta execução/revisão do lint. Nenhum achado ocultado.
+- CT01/CT03/CT05/CT06/CT08/CT10/CT12/CT14 concluídos por evidência e/ou relato.
+- Wi-Fi ligado em modo avião identificado; CT08 repetido com Wi-Fi desligado.
+- APK recebido: integridade ZIP e SHA-256 conferidos; instalação/abertura por relato.
+- Avaliação externa adiada, não executada. Sem teste Android pelo assistente.

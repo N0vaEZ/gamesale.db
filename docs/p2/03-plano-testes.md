@@ -39,7 +39,7 @@ Verifica agendamento, cancelamento e processamento sem perder registros ou afeta
 
 Regras: Formulário > SCHEDULED > PUBLISHED, CANCELLED, BLOCKED ou FAILED; cancelado não publica; reabrir preserva vínculo.
 
-Casos: CT04, CT05, CT07, CT08, CT09, CT10, CT11, CT12, CT13, CT14, CT15, CT16, CT18, CT19, CT20
+Casos: CT04, CT05, CT07, CT08, CT09, CT10, CT11, CT12, CT13, CT14, CT15, CT16, CT18, CT19, CT20, CT21
 
 ### T03 - Análise de valor limite
 
@@ -304,3 +304,17 @@ Pendentes. Escolher pessoa de outro projeto e registrar nome, data, dispositivo/
 ## Riscos prioritários
 
 Persistência e AlarmManager não são atômicos; permissões podem mudar depois de agendar; Doze atrasa eventos; reboot/force-stop não restauram alarmes. Defeitos antigos de sincronização devem ser registrados como tais, sem atribuí-los automaticamente à P2. A auditoria de segurança das regras publicadas não foi realizada.
+
+### CT21 - Executar e revisar lintDebug
+
+Requisito: RT01. Técnica: T02. Prioridade: Média.
+
+Pré-condições: Build Android disponível no Windows e árvore sem mudanças de código após os testes.
+
+Passos: 1. Executar .\gradlew.bat :app:lintDebug. 2. Abrir app/build/reports/lint-results-debug.html. 3. Conferir erros, avisos e sugestões. 4. Preservar relatório e registrar decisões.
+
+Esperado: Análise concluída e achados revisados sem esconder avisos. Caso aprovado significa execução/revisão bem-sucedidas, não ausência de problemas.
+
+## Consolidação posterior à etapa 8
+
+EX27-EX35 estão em docs/evidencias/resultados-finais-17-11.md. CT01, CT03, CT05, CT06, CT08, CT10, CT12 e CT14 concluídos conforme evidências/relatos. CT20 reexecutado anteriormente; CT21 lint revisado. APK recebido, integridade conferida, instalação/abertura confirmadas pelo usuário. Avaliação externa adiada e não executada. Variantes dos outros casos permanecem pendentes.

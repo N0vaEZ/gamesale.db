@@ -325,7 +325,7 @@ Os lembretes são locais e independem de Firestore ou internet. O horário é ap
 
 - [Diagnóstico e escopo](docs/p2/01-diagnostico.md)
 - [Implementação e demonstração](docs/p2/02-implementacao.md)
-- [Plano e 20 casos de teste](docs/p2/03-plano-testes.md)
+- [Plano e 21 casos de teste](docs/p2/03-plano-testes.md)
 - [Etapas, commits e execução](docs/p2/04-commits-e-execucao.md)
 - [Relatório de qualidade e pendências](docs/p2/05-relatorio-qualidade.md)
 - [Planilha de testes](docs/testes/GameSaleDB-Testes-P2.xlsx)
@@ -338,3 +338,7 @@ Correção de navegação da etapa 4 incorporada. Firebase mantido com autentica
 ### Atualização de testes e navegação — 17/11/2026
 
 A correção de cliques repetidos em Voltar está no commit `108fee9`, com build Windows aprovado e reteste manual confirmado no emulador Medium Phone/API 37/Android 17. Resultados, capturas e limites de cobertura: [registro manual](docs/evidencias/resultados-manuais-17-11.md). A planilha mantém o histórico de falhas e reexecuções. Variantes não executadas, avaliação externa, lint e disponibilização do APK continuam pendentes.
+
+### Consolidação da demonstração
+
+Oito casos manuais concluídos, cinco métodos JUnit aprovados e lint revisado com 22 avisos/1 sugestão. [Resultados finais](docs/evidencias/resultados-finais-17-11.md) e [identificação do APK](docs/evidencias/apk-identificacao.json). APK recebido com instalação/abertura confirmadas no emulador; não houve reexecução completa dos fluxos nesse binário pelo assistente. Avaliação externa adiada e demais variantes pendentes. [Roteiro da apresentação](docs/p2/06-demonstracao-e-entrega.md).

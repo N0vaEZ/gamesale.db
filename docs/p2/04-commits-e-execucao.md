@@ -55,7 +55,7 @@ Comandos no Windows:
 .\gradlew.bat :app:lintDebug
 ```
 
-Build debug e cinco testes JUnit confirmados no Windows por capturas. Lint ainda não confirmado. O APK fica em app/build/outputs/apk/debug/; copiar o arquivo gerado nessa máquina para a entrega ao avaliador. Nenhum APK foi anexado ao pacote de documentação.
+Build debug e cinco testes JUnit confirmados no Windows por capturas. Lint executado e revisado: 22 avisos e 1 sugestão, conforme EX27. O APK fica em app/build/outputs/apk/debug/; copiar o arquivo gerado nessa máquina para a entrega ao avaliador. Nenhum APK foi anexado ao pacote de documentação.
 
 Depois de instalar, execute CT01 a CT16 e registre ambiente, versão, horário, resultado e evidência. Consulte docs/p2/03-plano-testes.md e docs/testes/GameSaleDB-Testes-P2.xlsx. Para a avaliação externa e a entrega final, ainda faltam testes reais e evidências do dispositivo.
 
@@ -65,3 +65,9 @@ Depois de instalar, execute CT01 a CT16 e registre ambiente, versão, horário, 
 - Etapa 8: atualiza planilha, resultados, evidências e relatório; não modifica código do aplicativo. Sugestão: docs: registra testes manuais e reteste da navegacao.
 
 Para quem já está no commit 108fee9: aplicar apenas 08-resultados-manuais.patch. Não reaplicar patches 1 a 7. O diff da etapa 8 deve conter somente documentação e capturas. Lint, variantes de teste e avaliação externa continuam pendentes.
+
+## Etapa 9 — consolidação da entrega
+
+Commit da etapa 8: 674e34f, push confirmado. A etapa 9 acrescenta apenas documentação, planilha, capturas e identificação do APK; não muda fontes ou dependências. Sugestão: docs: consolida testes lint e identificacao do APK.
+
+Aplicar somente 09-consolida-entrega.patch sobre a etapa 8 já aplicada. Copiar também o HTML real: Copy-Item .\app\build\reports\lint-results-debug.html .\docs\evidencias\lint-results-debug.html. O HTML não está no patch para evitar conflito com cópia já existente. Não adicionar o diretório build nem o APK ao commit de fontes.

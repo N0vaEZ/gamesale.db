@@ -48,17 +48,29 @@ Riscos de inspeção da P1 permanecem no diagnóstico e não equivalem a defeito
 - CT05: entrega em segundo plano aprovada no minuto 10:53; atraso anterior mantido como outra ocorrência sem causa confirmada.
 - CT12: busca, consulta de preços e cache offline aprovados por relato explícito.
 - CT20: falha inicial e reteste aprovado por relato; captura da build e do commit disponíveis.
-- CT03/CT06: vazios e passado rejeitados sem registros; faltam apenas espaços e minuto atual na UI.
+- CT03/CT06: concluídos com campos vazios/espaços e passado/minuto atual rejeitados sem registros, complementados pelos testes puros de EX07.
 - CT02: bloqueio global e posterior agendamento observados; diálogo inicial de recusa e exigência de novo toque após reativação não confirmados individualmente.
-- CT04/CT07/CT08/CT11/CT13: comportamentos básicos observados; consultar na planilha os passos ainda pendentes. Bloqueado por falta de registro não equivale a falha do app.
-- Nenhum teste externo, em aparelho físico ou lint foi confirmado.
+- CT08: concluído em EX33, com reabertura e Wi-Fi desligado. CT04/CT07/CT11/CT13: comportamentos básicos observados, mas partes do roteiro ainda pendentes.
+- Nenhum teste externo ou em aparelho físico foi confirmado. Lint executado e revisado em EX27: 22 avisos e 1 sugestão, sem erros reportados.
 
 ## Pendências da entrega
 
-1. Completar os roteiros parciais sem transformar comportamentos não observados em resultados aprovados. Oito casos manuais completos ainda não estão comprovados.
+1. Completar os roteiros parciais sem transformar comportamentos não observados em resultados aprovados. Oito casos manuais foram concluídos após as execuções EX28-EX33; consultar a consolidação abaixo.
 2. Registrar janela de observação do cancelamento, reabertura/persistência, variantes de abertura pela notificação, espaços/minuto atual, canal bloqueado, rotação e notas. Regressão de sincronização remota permanece não verificada.
-3. Guardar HTML/XML do JUnit e, quando possível, captura/vídeo de recebimento/toque/cancelamento. Identificar SHA do APK instalado.
-4. Executar lint, disponibilizar o APK debug gerado no Windows e realizar avaliação por pessoa de outro projeto, com roteiro e exploração registrados.
+3. Guardar HTML/XML do JUnit e, quando possível, vídeo de toque/cancelamento. O APK enviado possui SHA-256 registrado; identidade com o APK dos testes anteriores não comprovada.
+4. Disponibilizar o APK ao professor/avaliador e realizar avaliação por pessoa de outro projeto quando retomada. Lint concluído; avaliação externa explicitamente adiada.
 5. Completar nomes/matrículas, URL digitada do repositório, contribuições e identificação do avaliador externo. Os sete commits e pushes foram confirmados; main não foi modificada pelo assistente.
 
 O Firebase mantém autenticação anônima e coleção compartilhada, conforme o escopo da demonstração. Análise das regras e sucesso da wishlist local não equivalem a teste remoto de regras/sincronização. Nenhuma publicação Firebase foi realizada nesta atualização.
+
+## Consolidação após o commit 674e34f
+
+Oito casos manuais concluídos por capturas e/ou relato: CT01, CT03, CT05, CT06, CT08, CT10, CT12 e CT14. CT20 permanece aprovado no reteste. Histórico de resultados parciais preservado; EX30/EX31/EX33 completam casos antes parciais. O sucesso não implica aprovação dos demais roteiros.
+
+EX33: lembrete #17 para SILENT HILL 2, 11:55 solicitado e 11:57 enviado/recebido, Wi-Fi desligado e modo avião ativo; dados preservados na reabertura conforme confirmação. EX18/EX19 não comprovam ausência de internet porque modo avião permite Wi-Fi ligado; nova evidência distingue isso.
+
+EX27: lintDebug concluído e relatório revisado, 22 avisos e 1 sugestão. Melhorias opcionais adiadas para preservar o código testado. Nenhuma atualização de dependências ou supressão realizada.
+
+EX34/EX35: APK recebido, integridade ZIP e SHA-256 conferidos localmente; instalação/abertura confirmadas pelo usuário no emulador. O assistente não executou o APK, não verificou sua assinatura e não comprovou build reproduzível. Identificação em docs/evidencias/apk-identificacao.json.
+
+Avaliação externa não executada, adiada por solicitação do usuário. Entrega acadêmica ainda tem essa pendência, identificação dos integrantes e variantes do plano. A documentação distingue resultado real, relato e não executado.

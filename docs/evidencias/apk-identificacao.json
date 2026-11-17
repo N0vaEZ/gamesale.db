@@ -1,0 +1,10 @@
+{
+  "arquivo": "app-debug.apk",
+  "bytes": 25875079,
+  "sha256": "1433419a052154047fca6eb00a2e3e7ff42b9259818938bcced08b67899276da",
+  "classes_dex": 12,
+  "integridade_zip": "Aprovada; CRC dos membros conferido",
+  "instalacao_abertura": "Confirmadas pelo executor no emulador; sem captura da instalação",
+  "limites": "Integridade ZIP não valida assinatura nem garante funcionamento. Assinatura não verificada aqui. Não foi estabelecida identidade criptográfica com o APK usado nos testes anteriores.",
+  "codigo_referencia": "108fee9; documentação posterior 674e34f; correspondência exata fonte/APK não comprovada por build reproduzível"
+}
