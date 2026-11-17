@@ -25,6 +25,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
+import android.net.Uri
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
+import com.example.gamesaledb.reminders.ReminderStore
+import com.example.gamesaledb.data.remote.dto.GameSearchDto
+import com.example.gamesaledb.ui.reminders.ReminderViewModel
+import com.example.gamesaledb.ui.reminders.RemindersScreen
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -34,7 +43,10 @@ import androidx.compose.material3.MaterialTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppNavigation() {
+fun AppNavigation(
+    requestedReminderId: Int? = null,
+    onReminderHandled: () -> Unit = {}
+) {
     val context = LocalContext.current
 
     val networkMonitor = remember {
@@ -53,6 +65,27 @@ fun AppNavigation() {
     val wishlistItems by wishlistViewModel.wishlistItems.collectAsState()
     val gameNoteViewModel: GameNoteViewModel = viewModel()
     val gameNote by gameNoteViewModel.note.collectAsState()
+    val reminderViewModel: ReminderViewModel = viewModel()
+    val reminderState by reminderViewModel.state.collectAsState()
+
+    LaunchedEffect(requestedReminderId) {
+        requestedReminderId?.let { id ->
+            val reminder = withContext(Dispatchers.IO) {
+                runCatching { ReminderStore(context).find(id) }.getOrNull()
+            }
+            if (reminder != null) {
+                gameViewModel.selectGame(GameSearchDto(
+                    id = reminder.gameId, title = reminder.gameTitle,
+                    slug = reminder.gameSlug, type = null, mature = false
+                ))
+                gameViewModel.loadPrices(reminder.gameId)
+                navController.navigate("apiGameDetails") { launchSingleTop = true }
+            } else {
+                navController.navigate("reminders") { launchSingleTop = true }
+            }
+            onReminderHandled()
+        }
+    }
 
     LaunchedEffect(isOnline) {
         if (isOnline) {
@@ -124,6 +157,11 @@ fun AppNavigation() {
                         title = {
                             Text("Lista de Desejos")
                         },
+                        actions = {
+                            androidx.compose.material3.TextButton(onClick = { navController.navigate("reminders") }) {
+                                Text("Lembretes")
+                            }
+                        },
                         navigationIcon = {
                             IconButton(
                                 onClick = {
@@ -150,10 +188,30 @@ fun AppNavigation() {
                             gameViewModel.selectWishlistGame(game)
                             gameViewModel.loadPrices(game.gameId)
                             navController.navigate("apiGameDetails")
+                        },
+                        onReminderClick = { game ->
+                            navController.navigate("reminders/${Uri.encode(game.gameId)}")
                         }
                     )
                 }
             }
+        }
+
+        composable("reminders") {
+            RemindersScreen(
+                game = null, state = reminderState, viewModel = reminderViewModel,
+                onBack = { navController.popBackStack() },
+                onWishlist = { navController.navigate("wishlist") { launchSingleTop = true } }
+            )
+        }
+
+        composable("reminders/{gameId}", arguments = listOf(navArgument("gameId") { type = NavType.StringType })) { entry ->
+            val game = wishlistItems.firstOrNull { it.gameId == entry.arguments?.getString("gameId") }
+            RemindersScreen(
+                game = game, state = reminderState, viewModel = reminderViewModel,
+                onBack = { navController.popBackStack() },
+                onWishlist = { navController.navigate("wishlist") { launchSingleTop = true } }
+            )
         }
 
         composable("apiGameDetails") {
