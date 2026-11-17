@@ -341,4 +341,17 @@ A correção de cliques repetidos em Voltar está no commit `108fee9`, com build
 
 ### Consolidação da demonstração
 
-Oito casos manuais concluídos, cinco métodos JUnit aprovados e lint revisado com 22 avisos/1 sugestão. [Resultados finais](docs/evidencias/resultados-finais-17-11.md) e [identificação do APK](docs/evidencias/apk-identificacao.json). APK recebido com instalação/abertura confirmadas no emulador; não houve reexecução completa dos fluxos nesse binário pelo assistente. Avaliação externa adiada e demais variantes pendentes. [Roteiro da apresentação](docs/p2/06-demonstracao-e-entrega.md).
+Nove casos manuais concluídos (incluindo CT04), além do reteste CT20; cinco métodos JUnit aprovados e lint revisado com 22 avisos/1 sugestão. [Resultados finais](docs/evidencias/resultados-finais-17-11.md) e [identificação do APK](docs/evidencias/apk-identificacao.json). APK recebido com instalação/abertura confirmadas no emulador; não houve reexecução completa dos fluxos nesse binário pelo assistente. Avaliação externa adiada e demais variantes pendentes. [Roteiro da apresentação](docs/p2/06-demonstracao-e-entrega.md).
+
+### Integrantes e repositório
+
+| Integrante | Matrícula |
+| --- | --- |
+| Victor Novaes Machado | 202312567 |
+| Robson Cruz de Mello Junior | 202323260 |
+
+Repositório: https://github.com/N0vaEZ/gamesale.db — branch `feat/p2-doc`.
+
+[Contribuições informadas](docs/p2/07-integrantes-e-contribuicoes.md). Victor informou ter realizado as atividades orientadas nas conversas da P1 e P2; contribuição de Robson não informada.
+
+CT04 concluído em EX36: lembrete #18 (Stardew Valley), previsto para 13:15, observado como Cancelado às 13:09. Estado preservado após reabrir e ausência de notificação até pelo menos 13:20 confirmados pelo executor; captura final às 13:21. [Registro e limites das evidências](docs/evidencias/resultados-finais-17-11.md).

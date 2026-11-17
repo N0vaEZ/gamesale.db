@@ -36,3 +36,5 @@ Consolidação posterior ao commit 674e34f, em 17/11/2026:
 - Wi-Fi ligado em modo avião identificado; CT08 repetido com Wi-Fi desligado.
 - APK recebido: integridade ZIP e SHA-256 conferidos; instalação/abertura por relato.
 - Avaliação externa adiada, não executada. Sem teste Android pelo assistente.
+
+Etapa 10: integrantes/repositório informados; EX36/CT04 aprovado por capturas e relato. Histórico EX01–EX35 preservado; 21 casos planejados e 36 execuções registradas.

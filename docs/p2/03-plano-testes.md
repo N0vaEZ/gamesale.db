@@ -15,7 +15,7 @@ RT01: suporte do wrapper e compilação do projeto.
 
 Executar primeiro CT17 e CT18 no Android Studio. Usar dispositivo/emulador API 33+ para permissão em runtime; repetir o fluxo principal em API 26 e, se disponível, API 24 para as guardas da minSdk original. Registrar modelo/API, build, fuso, estado do canal/permissão, rede, bateria e modo de abertura do app.
 
-Nomes/matrículas completos, URL digitada do repositório e parceiro externo ainda devem ser completados. Os hashes já confirmados estão no relatório de evidências. Não inventar autoria/contribuições. Usar dados fictícios e ocultar chaves nas capturas.
+Integrantes, matrículas e repositório registrados em 07-integrantes-e-contribuicoes.md. Identificação do parceiro externo e contribuição de Robson ainda não informadas. Os hashes já confirmados estão no relatório de evidências. Não inventar autoria/contribuições. Usar dados fictícios e ocultar chaves nas capturas.
 
 Condição de aprovação: resultado obtido coincide com o esperado, com versão e evidência. Em alarme inexato, registrar horário solicitado e observado; não exigir precisão de segundos. Definir e registrar janela de observação. Falta de entrega dentro dela exige investigação de canal, permissão, Doze e fabricante antes de concluir causa.
 
@@ -318,3 +318,5 @@ Esperado: Análise concluída e achados revisados sem esconder avisos. Caso apro
 ## Consolidação posterior à etapa 8
 
 EX27-EX35 estão em docs/evidencias/resultados-finais-17-11.md. CT01, CT03, CT05, CT06, CT08, CT10, CT12 e CT14 concluídos conforme evidências/relatos. CT20 reexecutado anteriormente; CT21 lint revisado. APK recebido, integridade conferida, instalação/abertura confirmadas pelo usuário. Avaliação externa adiada e não executada. Variantes dos outros casos permanecem pendentes.
+
+CT04 concluído posteriormente em EX36: #18 cancelado antes de 13:15, persistência após reabertura e ausência de notificação até 13:20 confirmadas por relato; captura final às 13:21. Registros anteriores parciais preservados.

@@ -2,7 +2,7 @@
 
 ## Versão e ambiente
 
-Código de referência: 108fee9. Documentação anterior: 674e34f. Windows/Android Studio; Medium Phone/API 37.0/Android 17. APK debug identificado em docs/evidencias/apk-identificacao.json; arquivo distribuído separadamente. Use esse SHA-256 para identificar o binário da demonstração, sem afirmar correspondência reproduzível com fontes não verificada.
+Código de referência: 108fee9. Documentação anterior: 3a7d014. Windows/Android Studio; Medium Phone/API 37.0/Android 17. APK debug identificado em docs/evidencias/apk-identificacao.json; arquivo distribuído separadamente. Use esse SHA-256 para identificar o binário da demonstração, sem afirmar correspondência reproduzível com fontes não verificada.
 
 ## O que explicar
 
@@ -17,7 +17,7 @@ O formulário valida campos, vínculo e horário. ReminderStore guarda JSON em S
 3. Agendar com título e mensagem próprios, para alguns minutos no futuro. Mostrar ID e estado Agendado.
 4. Deixar em segundo plano; apresentar as evidências reais de disparo (incluindo 11:55 → 11:57 sem rede), pois o horário é aproximado.
 5. Tocar na notificação e abrir o jogo. Usar Testar notificação agora somente para demonstrar canal/permissão, explicando que não prova o agendador.
-6. Cancelar outro lembrete antes do disparo e mostrar o histórico. Não afirmar janela sem entrega que não foi observada.
+6. Mostrar EX36/CT04: #18 cancelado antes de 13:15, preservado após reabertura e sem notificação até 13:20 conforme relato. Captura final às 13:21. Em demonstração ao vivo, cancelar outro lembrete e observar a janela antes de concluir.
 7. Mostrar planilha: técnicas T01 equivalência, T02 estados e T03 valor limite; falha/reteste DF03; relatório JUnit e lint.
 
 ## Defeito corrigido
@@ -35,6 +35,6 @@ Cliques rápidos em Voltar podiam retirar telas repetidamente e deixar a tela br
 
 ## Arquivos e revisão
 
-README, docs/p2/, docs/testes/GameSaleDB-Testes-P2.xlsx, docs/evidencias/, APK debug separado. Copiar HTML do lint do resultado real do Windows. Guardar HTML/XML do JUnit quando possível. Preencher integrantes, matrículas, contribuições e URL do repositório. Não é necessário colocar build/ ou APK no histórico Git de fontes.
+README, docs/p2/, docs/testes/GameSaleDB-Testes-P2.xlsx, docs/evidencias/, APK debug separado. Copiar HTML do lint do resultado real do Windows. Guardar HTML/XML do JUnit quando possível. Integrantes, matrículas, repositório e contribuições informadas em 07-integrantes-e-contribuicoes.md; contribuição de Robson ainda não descrita. Não é necessário colocar build/ ou APK no histórico Git de fontes.
 
 A main não foi modificada pelo assistente. Revisar a branch feat/p2-doc antes de abrir/mesclar PR; preserve commits separados se esse for o histórico desejado. Nenhum deploy Firebase é necessário para os lembretes locais.

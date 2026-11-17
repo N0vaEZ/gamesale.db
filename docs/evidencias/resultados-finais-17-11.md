@@ -1,6 +1,6 @@
 # Consolidação de testes, lint e APK — 17/11/2026
 
-Executor dos testes Android: novaes. Emulador Medium Phone/API 37.0/Android 17 no Windows. Fonte de referência: commit 108fee9, documentação 674e34f. A identificação do APK está em apk-identificacao.json. Os testes de interface foram realizados antes do recebimento do APK; a correspondência exata entre o APK testado anteriormente e o enviado não foi comprovada criptograficamente.
+Executor dos testes Android: Victor Novaes Machado (novaes). Emulador Medium Phone/API 37.0/Android 17 no Windows. Fonte de referência: commit 108fee9, documentação 674e34f. A identificação do APK está em apk-identificacao.json. Os testes de interface foram realizados antes do recebimento do APK; a correspondência exata entre o APK testado anteriormente e o enviado não foi comprovada criptograficamente.
 
 ## Execuções acrescentadas
 
@@ -78,11 +78,11 @@ Limites: Aprovação por relato. Não foi fornecido vídeo/log de instalação n
 
 ## Situação consolidada
 
-Oito casos manuais do plano tiveram seus comportamentos concluídos ao longo das execuções: CT01, CT03, CT05, CT06, CT08, CT10, CT12 e CT14. CT20 acrescenta o reteste da navegação. Algumas conclusões combinam captura e relato; a planilha descreve a origem. CT03/CT06 usam as execuções anteriores mais as novas, sem apagar registros parciais.
+Nove casos manuais do plano tiveram seus comportamentos concluídos ao longo das execuções: CT01, CT03, CT04, CT05, CT06, CT08, CT10, CT12 e CT14. CT20 acrescenta o reteste da navegação. Algumas conclusões combinam captura e relato; a planilha descreve a origem. CT03/CT06 usam as execuções anteriores mais as novas, sem apagar registros parciais.
 
-CT04 continua parcial: cancelamento observado, mas não foram informadas reabertura e janela final sem entrega. CT02, CT07, CT09, CT11, CT13, CT15 e CT16 têm variantes pendentes ou não executadas. Não confundir oito casos concluídos com cobertura total do plano.
+CT04 foi concluído em EX36, preservando os registros parciais anteriores. CT02, CT07, CT09, CT11, CT13, CT15 e CT16 têm variantes pendentes ou não executadas. Não confundir os casos concluídos com cobertura total do plano.
 
-A avaliação externa foi adiada por solicitação do usuário e continua não executada. Isso deixa uma pendência acadêmica. Também faltam identificação dos integrantes/contribuições e resultados das variantes acima; não inventar dados.
+A avaliação externa foi adiada por solicitação do usuário e continua não executada. Isso deixa uma pendência acadêmica. Integrantes e repositório foram informados; contribuições estão em docs/p2/07-integrantes-e-contribuicoes.md. A contribuição de Robson não foi descrita e as variantes acima permanecem pendentes.
 
 ## Revisão da evidência de rede
 
@@ -97,3 +97,13 @@ Manter versões já testadas para esta entrega. Não aplicar automaticamente Sha
 ## APK
 
 Arquivo recebido e inspecionado, com integridade ZIP aprovada. Instalação e abertura foram confirmadas pelo usuário; demais fluxos nesse exato binário não foram reexecutados. APK debug destinado à demonstração. Distribuição pública e assinatura de release não foram realizadas.
+
+## EX36 — CT04 — Aprovado
+
+Data: 17/11/2026. Executor: Victor Novaes Machado. Ambiente: emulador Medium Phone/API 37.0/Android 17 no Windows, conforme acompanhamento anterior. Referência documental: 3a7d014; código da navegação: 108fee9.
+
+O lembrete #18 de Stardew Valley, solicitado para 13:15, aparece Agendado na captura com relógio em 13:07 e Cancelado na captura de 13:09. Victor confirmou que, após fechar e reabrir o app, o registro continuou Cancelado e nenhuma notificação desse lembrete apareceu até 13:20. A captura final da tela inicial, às 13:21, encerra o acompanhamento.
+
+Evidências: EX36_CT04_agendado.png, EX36_CT04_cancelado.png, EX36_CT04_acompanhamento.png e EX36_CT04_fim_acompanhamento.png. A persistência após reabertura e a ausência de notificação são confirmadas por relato: as capturas da tela inicial, isoladamente, não demonstram ausência de notificações. Os horários são os minutos exibidos; não representam medição de segundos nem o instante exato da ação de cancelar. A aprovação é restrita à janela observada e não comprova ausência de entrega indefinidamente.
+
+O commit 3a7d014, push e árvore limpa foram confirmados na captura commit_3a7d014_push.png. Esta atualização acrescenta documentação, sem novo código do aplicativo.

@@ -50,7 +50,7 @@ Riscos de inspeção da P1 permanecem no diagnóstico e não equivalem a defeito
 - CT20: falha inicial e reteste aprovado por relato; captura da build e do commit disponíveis.
 - CT03/CT06: concluídos com campos vazios/espaços e passado/minuto atual rejeitados sem registros, complementados pelos testes puros de EX07.
 - CT02: bloqueio global e posterior agendamento observados; diálogo inicial de recusa e exigência de novo toque após reativação não confirmados individualmente.
-- CT08: concluído em EX33, com reabertura e Wi-Fi desligado. CT04/CT07/CT11/CT13: comportamentos básicos observados, mas partes do roteiro ainda pendentes.
+- CT08: concluído em EX33, com reabertura e Wi-Fi desligado. CT04: concluído posteriormente em EX36. CT07/CT11/CT13: comportamentos básicos observados, mas partes do roteiro ainda pendentes.
 - Nenhum teste externo ou em aparelho físico foi confirmado. Lint executado e revisado em EX27: 22 avisos e 1 sugestão, sem erros reportados.
 
 ## Pendências da entrega
@@ -59,7 +59,7 @@ Riscos de inspeção da P1 permanecem no diagnóstico e não equivalem a defeito
 2. Registrar janela de observação do cancelamento, reabertura/persistência, variantes de abertura pela notificação, espaços/minuto atual, canal bloqueado, rotação e notas. Regressão de sincronização remota permanece não verificada.
 3. Guardar HTML/XML do JUnit e, quando possível, vídeo de toque/cancelamento. O APK enviado possui SHA-256 registrado; identidade com o APK dos testes anteriores não comprovada.
 4. Disponibilizar o APK ao professor/avaliador e realizar avaliação por pessoa de outro projeto quando retomada. Lint concluído; avaliação externa explicitamente adiada.
-5. Completar nomes/matrículas, URL digitada do repositório, contribuições e identificação do avaliador externo. Os sete commits e pushes foram confirmados; main não foi modificada pelo assistente.
+5. Integrantes, matrículas e URL informados; contribuições em 07-integrantes-e-contribuicoes.md. Contribuição de Robson e identificação do avaliador externo não informadas. Nove commits/pushes confirmados até 3a7d014; main não foi modificada pelo assistente.
 
 O Firebase mantém autenticação anônima e coleção compartilhada, conforme o escopo da demonstração. Análise das regras e sucesso da wishlist local não equivalem a teste remoto de regras/sincronização. Nenhuma publicação Firebase foi realizada nesta atualização.
 
@@ -73,4 +73,10 @@ EX27: lintDebug concluído e relatório revisado, 22 avisos e 1 sugestão. Melho
 
 EX34/EX35: APK recebido, integridade ZIP e SHA-256 conferidos localmente; instalação/abertura confirmadas pelo usuário no emulador. O assistente não executou o APK, não verificou sua assinatura e não comprovou build reproduzível. Identificação em docs/evidencias/apk-identificacao.json.
 
-Avaliação externa não executada, adiada por solicitação do usuário. Entrega acadêmica ainda tem essa pendência, identificação dos integrantes e variantes do plano. A documentação distingue resultado real, relato e não executado.
+Avaliação externa não executada, adiada por solicitação do usuário. Entrega acadêmica ainda tem essa pendência; variantes do plano continuam documentadas como pendentes. A documentação distingue resultado real, relato e não executado.
+
+## Atualização do cancelamento e da identificação
+
+CT04 aprovado em EX36. #18 de Stardew Valley previsto para 13:15, observado Cancelado às 13:09. Persistência após reabertura e ausência de notificação até 13:20 confirmadas pelo executor; captura de encerramento às 13:21. Não houve medição contínua nem comprovação por captura da ausência de notificação; aprovação por capturas e relato na janela descrita. Agora são nove casos manuais do conjunto principal concluídos, além de CT20.
+
+Victor Novaes Machado (202312567) e Robson Cruz de Mello Junior (202323260) identificados pelo usuário. Victor declarou ter realizado as atividades acompanhadas nas conversas da P1 e P2; contribuição de Robson não informada. Repositório: https://github.com/N0vaEZ/gamesale.db. Fonte da declaração e limites em 07-integrantes-e-contribuicoes.md.

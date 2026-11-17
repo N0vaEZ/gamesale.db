@@ -71,3 +71,9 @@ Para quem já está no commit 108fee9: aplicar apenas 08-resultados-manuais.patc
 Commit da etapa 8: 674e34f, push confirmado. A etapa 9 acrescenta apenas documentação, planilha, capturas e identificação do APK; não muda fontes ou dependências. Sugestão: docs: consolida testes lint e identificacao do APK.
 
 Aplicar somente 09-consolida-entrega.patch sobre a etapa 8 já aplicada. Copiar também o HTML real: Copy-Item .\app\build\reports\lint-results-debug.html .\docs\evidencias\lint-results-debug.html. O HTML não está no patch para evitar conflito com cópia já existente. Não adicionar o diretório build nem o APK ao commit de fontes.
+
+## Etapa 10 — identificação e conclusão do cancelamento
+
+Etapa 9 confirmada: commit 3a7d014, push e árvore limpa, conforme captura. Aplicar somente 10-identificacao-cancelamento.patch sobre essa versão. Atualização exclusivamente documental: integrantes, matrículas, URL, contribuições declaradas, EX36/CT04 e planilha. Não altera APK, dependências, Firebase ou fontes Kotlin.
+
+Revisar com git diff --cached --stat após git add README.md docs/. Sugestão de commit: docs: identifica integrantes e conclui teste de cancelamento.
