@@ -315,3 +315,21 @@ O projeto demonstra conceitos abordados no desenvolvimento de aplicativos Androi
 - armazenamento remoto;
 - tratamento de estados de carregamento e sincronização;
 - versionamento com Git.
+
+
+## P2 - lembretes locais de jogos
+
+Na lista de desejos, toque em **Criar lembrete** no jogo. Preencha título/mensagem, escolha horário futuro e habilite notificações. Toque em **Agendar** após conceder a permissão. O botão **Lembretes** abre o histórico e permite cancelar agendamentos antes do disparo.
+
+Os lembretes são locais e independem de Firestore ou internet. O horário é aproximado. Após reiniciar o celular ou forçar a parada, cancele os registros antigos e crie novamente. Remover um jogo da wishlist não cancela seus lembretes. Tocar na notificação abre os detalhes do jogo vinculado.
+
+- [Diagnóstico e escopo](docs/p2/01-diagnostico.md)
+- [Implementação e demonstração](docs/p2/02-implementacao.md)
+- [Plano e 19 casos de teste](docs/p2/03-plano-testes.md)
+- [Etapas, commits e execução](docs/p2/04-commits-e-execucao.md)
+- [Relatório de qualidade e pendências](docs/p2/05-relatorio-qualidade.md)
+- [Planilha de testes](docs/testes/GameSaleDB-Testes-P2.xlsx)
+
+Estado da validação em 17/11/2026: build debug aprovado no Windows e cinco testes de ReminderValidationTest executados, sem falhas ou ignorados. Verificações manuais no emulador Medium Phone, API 37.0, Android 17: entrega após Clear all (09:51 solicitado, 09:52 observado), cancelamento e abertura do jogo correto confirmados por relato. Variantes pendentes e distinção entre capturas e relatos estão no relatório de qualidade. A entrega ainda exige mais casos manuais, evidências no dispositivo e avaliação externa.
+
+Correção de navegação da etapa 4 incorporada. Firebase mantido com autenticação anônima e coleção compartilhada, conforme o escopo da demonstração.

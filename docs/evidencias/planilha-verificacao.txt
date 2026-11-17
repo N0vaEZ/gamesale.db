@@ -1,0 +1,19 @@
+Verificação realizada em 16/11/2026 (America/Sao_Paulo).
+7 abas preservadas, na ordem original.
+Conteúdo fora das células autorizadas: preservado.
+Listas de validação e quantidade de regras condicionais: preservadas.
+19 IDs de casos únicos, CT01 a CT19.
+16 casos manuais marcados Não executado, sem evidência fictícia.
+EX01/EX02 bloqueadas, EX03 reprovada e EX04 aprovada apenas no wrapper.
+Planilha exportada, reaberta e comparada com o modelo.
+Pré-visualizações de todas as abas alteradas examinadas, sem corte relevante de conteúdo.
+Sem verificação de uso interativo no Microsoft Excel.
+
+Atualização em 17/11/2026:
+Sete abas, 19 casos e listas de validação preservados.
+Conteúdo fora das células atualizadas comparado e preservado.
+Histórico EX01-EX04 preservado sem sobrescrita.
+Novos resultados EX05-EX08: falha/reteste de compilação e JUnit no Windows, com capturas reais.
+EX09 registra entrega por relato; EX10/EX11 registram cobertura parcial e pendências sem inventar variantes.
+Pré-visualizações das quatro abas alteradas revisadas.
+Sem validação interativa no Microsoft Excel.

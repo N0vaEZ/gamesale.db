@@ -1,0 +1,11 @@
+gradlew: line 2: $'\r': command not found
+gradlew: line 20: $'\r': command not found
+gradlew: line 66: $'\r': command not found
+gradlew: line 68: $'\r': command not found
+gradlew: line 71: $'\r': command not found
+gradlew: line 73: $'while\r': command not found
+gradlew: line 75: [: missing `]'
+gradlew: line 76: $'do\r': command not found
+ls: cannot access 'gradlew'$'\r': No such file or directory
+gradlew: line 81: syntax error near unexpected token `newline'
+gradlew: line 81: `      *)    app_path=$APP_HOME$link ;;'
