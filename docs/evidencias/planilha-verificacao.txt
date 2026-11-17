@@ -17,3 +17,12 @@ Novos resultados EX05-EX08: falha/reteste de compilação e JUnit no Windows, co
 EX09 registra entrega por relato; EX10/EX11 registram cobertura parcial e pendências sem inventar variantes.
 Pré-visualizações das quatro abas alteradas revisadas.
 Sem validação interativa no Microsoft Excel.
+
+
+Atualização manual de 17/11/2026 após commit 108fee9:
+- Planilha editada com artifact-tool e prévias visuais conferidas.
+- Sete abas, validações e formatação condicional preservadas.
+- EX01-EX11 preservados; EX12-EX26 adicionados (26 IDs únicos).
+- CT20 e DF03 acrescentados para o defeito de retorno rápido.
+- Capturas copiadas sem alteração; recebimento/gestos/regressão identificados como relatos.
+- Verificação estática P2-0a9be0739877 passou; não comprova testes Android.

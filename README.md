@@ -325,7 +325,7 @@ Os lembretes são locais e independem de Firestore ou internet. O horário é ap
 
 - [Diagnóstico e escopo](docs/p2/01-diagnostico.md)
 - [Implementação e demonstração](docs/p2/02-implementacao.md)
-- [Plano e 19 casos de teste](docs/p2/03-plano-testes.md)
+- [Plano e 20 casos de teste](docs/p2/03-plano-testes.md)
 - [Etapas, commits e execução](docs/p2/04-commits-e-execucao.md)
 - [Relatório de qualidade e pendências](docs/p2/05-relatorio-qualidade.md)
 - [Planilha de testes](docs/testes/GameSaleDB-Testes-P2.xlsx)
@@ -333,3 +333,8 @@ Os lembretes são locais e independem de Firestore ou internet. O horário é ap
 Estado da validação em 17/11/2026: build debug aprovado no Windows e cinco testes de ReminderValidationTest executados, sem falhas ou ignorados. Verificações manuais no emulador Medium Phone, API 37.0, Android 17: entrega após Clear all (09:51 solicitado, 09:52 observado), cancelamento e abertura do jogo correto confirmados por relato. Variantes pendentes e distinção entre capturas e relatos estão no relatório de qualidade. A entrega ainda exige mais casos manuais, evidências no dispositivo e avaliação externa.
 
 Correção de navegação da etapa 4 incorporada. Firebase mantido com autenticação anônima e coleção compartilhada, conforme o escopo da demonstração.
+
+
+### Atualização de testes e navegação — 17/11/2026
+
+A correção de cliques repetidos em Voltar está no commit `108fee9`, com build Windows aprovado e reteste manual confirmado no emulador Medium Phone/API 37/Android 17. Resultados, capturas e limites de cobertura: [registro manual](docs/evidencias/resultados-manuais-17-11.md). A planilha mantém o histórico de falhas e reexecuções. Variantes não executadas, avaliação externa, lint e disponibilização do APK continuam pendentes.

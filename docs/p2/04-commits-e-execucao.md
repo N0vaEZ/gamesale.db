@@ -13,7 +13,7 @@ Nenhum commit ou publicação remota foi realizado pelo assistente. Os patches s
 | 05-wrapper-linux.patch | Correção CRLF, execução e atributo LF do wrapper | fix: normaliza o wrapper Gradle para Linux |
 | 06-testes-documentacao.patch | Cinco testes JUnit, planilha, plano, relatório e verificações | test: adiciona validacoes e documenta a P2 |
 
-As etapas são cumulativas. Etapas 02 e 03 acrescentam a base, sem acesso pela interface; etapa 04 integra o fluxo visível. As compilações foram confirmadas no Windows. A falha de navegação foi corrigida antes do commit da etapa 4. A branch em uso é feat/p2-doc; etapas 1 a 5 registradas/enviadas conforme confirmação do executor. Conferir os hashes no histórico real.
+As etapas são cumulativas. Etapas 02 e 03 acrescentam a base, sem acesso pela interface; etapa 04 integra o fluxo visível. As compilações foram confirmadas no Windows. A falha de navegação foi corrigida antes do commit da etapa 4. A branch em uso é feat/p2-doc; etapas 1 a 7 registradas/enviadas conforme capturas do executor. Os hashes estão em docs/evidencias/resultados-manuais-17-11.md.
 
 ## Aplicar no repositório existente
 
@@ -58,3 +58,10 @@ Comandos no Windows:
 Build debug e cinco testes JUnit confirmados no Windows por capturas. Lint ainda não confirmado. O APK fica em app/build/outputs/apk/debug/; copiar o arquivo gerado nessa máquina para a entrega ao avaliador. Nenhum APK foi anexado ao pacote de documentação.
 
 Depois de instalar, execute CT01 a CT16 e registre ambiente, versão, horário, resultado e evidência. Consulte docs/p2/03-plano-testes.md e docs/testes/GameSaleDB-Testes-P2.xlsx. Para a avaliação externa e a entrega final, ainda faltam testes reais e evidências do dispositivo.
+
+## Atualizações após as seis etapas
+
+- Etapa 7, commit 108fee9: protege as quatro setas de voltar em AppNavigation.kt. A função verifica entrada ativa, lifecycle RESUMED e existência de tela anterior antes de popBackStack. Build aprovado e defeito reexecutado pelo usuário sem tela branca. Não altera Firebase, armazenamento ou alarmes.
+- Etapa 8: atualiza planilha, resultados, evidências e relatório; não modifica código do aplicativo. Sugestão: docs: registra testes manuais e reteste da navegacao.
+
+Para quem já está no commit 108fee9: aplicar apenas 08-resultados-manuais.patch. Não reaplicar patches 1 a 7. O diff da etapa 8 deve conter somente documentação e capturas. Lint, variantes de teste e avaliação externa continuam pendentes.

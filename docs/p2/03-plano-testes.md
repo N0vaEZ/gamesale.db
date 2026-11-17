@@ -15,13 +15,13 @@ RT01: suporte do wrapper e compilação do projeto.
 
 Executar primeiro CT17 e CT18 no Android Studio. Usar dispositivo/emulador API 33+ para permissão em runtime; repetir o fluxo principal em API 26 e, se disponível, API 24 para as guardas da minSdk original. Registrar modelo/API, build, fuso, estado do canal/permissão, rede, bateria e modo de abertura do app.
 
-Não foram informados nomes/matrículas completos, URL exata do repositório ou parceiro externo. Preencher esses dados antes da entrega. Não inventar autoria/contribuições. Usar dados fictícios e ocultar chaves nas capturas.
+Nomes/matrículas completos, URL digitada do repositório e parceiro externo ainda devem ser completados. Os hashes já confirmados estão no relatório de evidências. Não inventar autoria/contribuições. Usar dados fictícios e ocultar chaves nas capturas.
 
 Condição de aprovação: resultado obtido coincide com o esperado, com versão e evidência. Em alarme inexato, registrar horário solicitado e observado; não exigir precisão de segundos. Definir e registrar janela de observação. Falta de entrega dentro dela exige investigação de canal, permissão, Doze e fabricante antes de concluir causa.
 
 Atualização de 17/11/2026: build aprovado no Windows e cinco testes de ReminderValidationTest executados, sem falhas ou ignorados. Os testes unitários rodam na JVM do computador. Verificações manuais no emulador Medium Phone, API 37.0, Android 17, conforme informação do executor.
 
-CT05 aprovado por relato: solicitado 09:51 e entregue 09:52 após Clear all. Cancelamento (CT04) e abertura do jogo (CT11) confirmados no comportamento básico, com os demais passos/variantes ainda pendentes para conclusão dos casos completos. Os outros 13 casos manuais não têm execução confirmada. Tentativas iniciais bloqueadas, falha de compilação e retestes permanecem na planilha. Ver docs/p2/05-relatorio-qualidade.md.
+A atualização EX12-EX26 está em docs/evidencias/resultados-manuais-17-11.md. Inclui validação de campos e horário passado, bloqueio de notificações, entrega em segundo plano/sem internet, abertura vinculada, regressão e defeito/reteste da seta. CT05 e CT12 têm execução aprovada; as variantes não explicitamente executadas dos outros casos continuam pendentes. Nenhuma aprovação é inferida apenas da compilação. CT20 cobre o defeito descoberto durante a exploração.
 
 ## Técnicas
 
@@ -39,7 +39,7 @@ Verifica agendamento, cancelamento e processamento sem perder registros ou afeta
 
 Regras: Formulário > SCHEDULED > PUBLISHED, CANCELLED, BLOCKED ou FAILED; cancelado não publica; reabrir preserva vínculo.
 
-Casos: CT04, CT05, CT07, CT08, CT09, CT10, CT11, CT12, CT13, CT14, CT15, CT16, CT18, CT19
+Casos: CT04, CT05, CT07, CT08, CT09, CT10, CT11, CT12, CT13, CT14, CT15, CT16, CT18, CT19, CT20
 
 ### T03 - Análise de valor limite
 
@@ -278,6 +278,18 @@ Dados: ZIP original com CRLF; fonte P2 com LF.
 Passos: 1. Executar bash gradlew no original e registrar falha. 2. Corrigir apenas finais de linha e permissão. 3. Executar bash -n gradlew. 4. Executar wrapper e observar se inicia download.
 
 Esperado: Após correção, shell aceita script e wrapper chega à inicialização/download. Falha de rede no download é bloqueio distinto da sintaxe.
+
+### CT20 - Voltar rapidamente sem remover a tela inicial
+
+Requisito: RF06/RG01 e navegação existente. Técnica: T02. Prioridade: Alta.
+
+Pré-condições: App atualizado; tela inicial disponível; um jogo salvo e fluxo de lembretes acessível.
+
+Dados: Telas de detalhes, wishlist, lista/formulário de lembretes.
+
+Passos: 1. Abrir cada tela. 2. Voltar com um clique e conferir destino. 3. Reabrir e tocar rapidamente várias vezes na seta durante a transição. 4. Conferir que a tela inicial permanece acessível e não fica branca.
+
+Esperado: Uma ação válida de retorno por tela ativa. Cliques da tela em saída são ignorados; a última tela da pilha não é removida pela seta.
 
 ## Registro de execução
 
